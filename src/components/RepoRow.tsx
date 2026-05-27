@@ -157,7 +157,7 @@ export const RepoRow = memo(({ repo, latestRun, isExpanded, onToggle, isLoading,
             ) : (
               <span
                 data-testid="repo-row-duration"
-                className="font-mono text-xs tabular-nums text-ink-secondary"
+                className="font-mono text-xs tabular-nums text-ink-secondary min-w-14 text-right"
               >
                 {formatDuration(latestRun.run_started_at, latestRun.updated_at)}
               </span>
