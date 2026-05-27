@@ -146,7 +146,7 @@ export const WorkflowRunRow = memo(({ run, owner, repo }: WorkflowRunRowProps) =
   return (
     <div
       data-testid={`workflow-run-${run.id}`}
-      className={`pl-3 overflow-hidden ${borderClasses}`}
+      className={`pl-4 overflow-hidden ${borderClasses}`}
     >
       {/* Main row -- clickable to expand. Uses div+role=button to allow <a> and <button> children */}
       <div
