@@ -146,7 +146,7 @@ export const WorkflowRunRow = memo(({ run, owner, repo }: WorkflowRunRowProps) =
   return (
     <div
       data-testid={`workflow-run-${run.id}`}
-      className={`pl-4 overflow-hidden ${borderClasses}`}
+      className={`overflow-hidden ${borderClasses}`}
     >
       {/* Main row -- clickable to expand. Uses div+role=button to allow <a> and <button> children */}
       <div
@@ -274,7 +274,7 @@ export const WorkflowRunRow = memo(({ run, owner, repo }: WorkflowRunRowProps) =
             ) : (
               <span
                 data-testid="workflow-run-duration"
-                className="font-mono text-xs tabular-nums text-ink-secondary"
+                className="font-mono text-xs tabular-nums text-ink-secondary min-w-14 text-right"
               >
                 {formatDuration(run.run_started_at, run.updated_at)}
               </span>

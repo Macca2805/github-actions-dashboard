@@ -72,26 +72,6 @@ export const RepoRow = memo(({ repo, latestRun, isExpanded, onToggle, isLoading,
     >
       <span className="sr-only">{statusLabel}</span>
       <div className="flex items-center gap-0 hover:bg-surface-raised active:bg-surface-raised rounded-lg transition-colors duration-150">
-        <button
-          onClick={onTogglePin}
-          className={`shrink-0 px-2 py-2.5 sm:p-2 min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 flex items-center justify-center transition-colors duration-150 cursor-pointer ${
-            isPinned ? 'text-status-queued' : 'text-ink-muted/30 hover:text-ink-muted'
-          }`}
-          title={isPinned ? 'Unpin repository' : 'Pin to top'}
-          aria-label={isPinned ? 'Unpin repository' : 'Pin to top'}
-        >
-          <svg
-            aria-hidden="true"
-            className="h-3.5 w-3.5"
-            viewBox="0 0 16 16"
-            fill={isPinned ? 'currentColor' : 'none'}
-            stroke="currentColor"
-            strokeWidth="1.5"
-          >
-            <path d="M4.456 2.193c.282-.282.7-.36 1.063-.199l5.25 2.333c.259.115.442.355.483.634l.512 3.483 1.575 1.575a.75.75 0 0 1-.53 1.281H9.28l-1.03 3.03a.75.75 0 0 1-1.42.02L5.5 11.28H1.31a.75.75 0 0 1-.53-1.281l1.575-1.575.512-3.483a.75.75 0 0 1 .483-.634l1.106-.49Z" />
-          </svg>
-        </button>
-
         <div
           role="button"
           tabIndex={0}
@@ -99,7 +79,7 @@ export const RepoRow = memo(({ repo, latestRun, isExpanded, onToggle, isLoading,
           aria-controls={`repo-expanded-${repo.full_name}`}
           onClick={onToggle}
           onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onToggle(); } }}
-          className="flex-1 min-w-0 text-left cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-status-running focus-visible:rounded-lg pr-3 py-2.5 overflow-hidden transition-all duration-150 active:scale-[0.995]"
+          className="flex-1 min-w-0 text-left cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-status-running focus-visible:rounded-lg pl-3 pr-3 py-2.5 overflow-hidden transition-all duration-150 active:scale-[0.995]"
         >
           <span className="sr-only">
             {`${repo.full_name}, status: ${statusLabel}, ${isExpanded ? 'collapse' : 'expand'} details`}
@@ -120,6 +100,26 @@ export const RepoRow = memo(({ repo, latestRun, isExpanded, onToggle, isLoading,
             >
               <span data-testid="repo-row-name">{repo.full_name}</span>
             </GhLink>
+
+            <button
+              onClick={(e) => { e.stopPropagation(); onTogglePin(); }}
+              className={`shrink-0 p-1 flex items-center justify-center transition-colors duration-150 cursor-pointer ${
+                isPinned ? 'text-status-queued' : 'text-ink-muted/30 hover:text-ink-muted'
+              }`}
+              title={isPinned ? 'Unpin repository' : 'Pin to top'}
+              aria-label={isPinned ? 'Unpin repository' : 'Pin to top'}
+            >
+              <svg
+                aria-hidden="true"
+                className="h-3.5 w-3.5"
+                viewBox="0 0 16 16"
+                fill={isPinned ? 'currentColor' : 'none'}
+                stroke="currentColor"
+                strokeWidth="1.5"
+              >
+                <path d="M4.456 2.193c.282-.282.7-.36 1.063-.199l5.25 2.333c.259.115.442.355.483.634l.512 3.483 1.575 1.575a.75.75 0 0 1-.53 1.281H9.28l-1.03 3.03a.75.75 0 0 1-1.42.02L5.5 11.28H1.31a.75.75 0 0 1-.53-1.281l1.575-1.575.512-3.483a.75.75 0 0 1 .483-.634l1.106-.49Z" />
+              </svg>
+            </button>
 
             <span
               data-testid="repo-row-branch"
